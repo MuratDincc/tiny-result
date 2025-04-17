@@ -23,7 +23,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --no-build --verbosity detailed --logger "console;verbosity=detailed"
+        run: dotnet test
 
       - name: Create artifacts directory
         run: mkdir -p ${{ github.workspace }}/artifacts
