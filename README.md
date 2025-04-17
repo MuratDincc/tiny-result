@@ -1,5 +1,10 @@
 # TinyResult
 
+[![NuGet Version](https://img.shields.io/nuget/v/TinyResult.svg)](https://www.nuget.org/packages/TinyResult)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/TinyResult.svg)](https://www.nuget.org/packages/TinyResult)
+[![GitHub Actions](https://github.com/muratdincc/tiny-result/actions/workflows/release.yml/badge.svg)](https://github.com/muratdincc/tiny-result/actions/workflows/release.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A lightweight and powerful Result Pattern implementation for .NET 9. This library is designed to make error handling and validation operations cleaner and more readable.
 
 ## Features
