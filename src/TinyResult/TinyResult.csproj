@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <Authors>Murat Dinç</Authors>
+    <Description>A lightweight and powerful Result Pattern implementation for .NET 9</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/MuratDincc/tiny-result</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MuratDincc/tiny-result.git</RepositoryUrl>
+    <PackageTags>result-pattern;error-handling;validation;async;linq;net9</PackageTags>
+    <PackageId>TinyResult</PackageId>
+  </PropertyGroup>
+
+</Project> 

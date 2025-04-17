@@ -1,0 +1,58 @@
+name: Release Package and Documentation
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --verbosity detailed --logger "console;verbosity=detailed"
+
+      - name: Create artifacts directory
+        run: mkdir -p ${{ github.workspace }}/artifacts
+
+      - name: Pack
+        run: dotnet pack src/TinyResult/TinyResult.csproj --configuration Release --no-build --output ${{ github.workspace }}/artifacts
+
+      - name: Publish to NuGet
+        run: |
+          NUGET_PACKAGE=$(ls ${{ github.workspace }}/artifacts/TinyResult.*.nupkg)
+          echo "Publishing package: $NUGET_PACKAGE"
+          dotnet nuget push "$NUGET_PACKAGE" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+  deploy-docs:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install MkDocs
+        run: pip install mkdocs-material
+
+      - name: Deploy Documentation
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

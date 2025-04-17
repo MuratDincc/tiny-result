@@ -1,0 +1,80 @@
+site_name: TinyResult
+site_description: A lightweight and powerful Result Pattern implementation for .NET
+site_author: Murat Dinç
+repo_url: https://github.com/MuratDincc/TinyResult
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - search.share
+    - toc.integrate
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+    - content.action.edit
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Introduction: getting-started/introduction.md
+    - Installation: getting-started/installation.md
+    - Basic Usage: getting-started/basic-usage.md
+  - Features:
+    - Result Pattern: features/result-pattern.md
+    - Error Handling: features/error-handling.md
+    - Validation: features/validation.md
+    - Async Support: features/async-support.md
+    - LINQ Support: features/linq-support.md
+    - Extensions: features/extensions.md
+    - Pipeline: features/pipeline.md
+  - Examples:
+    - Basic Examples: examples/basic-examples.md
+    - Advanced Examples: examples/advanced-examples.md
+    - Real World Scenarios: examples/real-world-scenarios.md
+  - API Reference:
+    - Result: api-reference/result.md
+    - Error: api-reference/error.md
+    - ValidationResult: api-reference/validation-result.md
+    - Extensions: api-reference/extensions.md
+  - Advanced Topics:
+    - Best Practices: advanced-topics/best-practices.md
+    - Testing: advanced-topics/testing.md
+    - Integration: advanced-topics/integration.md
+  - Guides:
+    - Performance Guide: guides/performance.md
+    - Migration Guide: guides/migration.md 
