@@ -1,0 +1,2040 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A lightweight and powerful Result Pattern implementation for .NET">
+      
+      
+        <meta name="author" content="Murat Dinç">
+      
+      
+      
+        <link rel="prev" href="../basic-examples/">
+      
+      
+        <link rel="next" href="../real-world-scenarios/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Advanced Examples - TinyResult</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#advanced-examples" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TinyResult" class="md-header__button md-logo" aria-label="TinyResult" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TinyResult
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Advanced Examples
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MuratDincc/tiny-result" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/introduction/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/result-pattern/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../basic-examples/" class="md-tabs__link">
+          
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/result/" class="md-tabs__link">
+          
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced-topics/best-practices/" class="md-tabs__link">
+          
+  
+  Advanced Topics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/performance/" class="md-tabs__link">
+          
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TinyResult" class="md-nav__button md-logo" aria-label="TinyResult" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    TinyResult
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MuratDincc/tiny-result" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/basic-usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/result-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Result Pattern
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/error-handling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error Handling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/async-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/linq-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LINQ Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Examples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Advanced Examples
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Examples
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-pipeline-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pipeline Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Pipeline Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-circuit-breaker-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Circuit Breaker Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Circuit Breaker Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-validation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validation Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Validation Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complex-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complex Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Async Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-retry-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Retry Mechanism
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Retry Mechanism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-retry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Retry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-retry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Retry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-timeout-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Timeout Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Timeout Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-timeout-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Timeout Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-parallel-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Parallel Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Parallel Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallel-result-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Result Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-event-sourcing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Event Sourcing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Event Sourcing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-resultfactory-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ResultFactory Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ResultFactory Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP Requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-resultpipeline-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ResultPipeline Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ResultPipeline Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Order Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-validation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complex Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-error-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Error Information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Transformation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-getvalueor-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. GetValueOr* Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. GetValueOr* Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-operations-on-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternative Operations on Error
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-throwing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception Throwing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-world-scenarios/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Real World Scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/result/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Result
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/error/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/validation-result/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ValidationResult
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced Topics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/best-practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/migration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/MuratDincc/tiny-result/edit/master/docs/examples/advanced-examples.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="advanced-examples">Advanced Examples<a class="headerlink" href="#advanced-examples" title="Permanent link">&para;</a></h1>
+<h2 id="1-pipeline-operations">1. Pipeline Operations<a class="headerlink" href="#1-pipeline-operations" title="Permanent link">&para;</a></h2>
+<h3 id="basic-pipeline">Basic Pipeline<a class="headerlink" href="#basic-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ProcessOrder</span><span class="p">(</span><span class="n">OrderRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateOrder</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">CheckInventory</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">CalculateTotal</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">CreateOrder</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="conditional-pipeline">Conditional Pipeline<a class="headerlink" href="#conditional-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ProcessOrderWithDiscount</span><span class="p">(</span><span class="n">OrderRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateOrder</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">When</span><span class="p">(</span>
+<span class="w">            </span><span class="n">order</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="n">Total</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span>
+<span class="w">            </span><span class="n">order</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ApplyDiscount</span><span class="p">(</span><span class="n">order</span><span class="p">),</span>
+<span class="w">            </span><span class="n">order</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">order</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">CreateOrder</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="2-circuit-breaker-pattern">2. Circuit Breaker Pattern<a class="headerlink" href="#2-circuit-breaker-pattern" title="Permanent link">&para;</a></h2>
+<h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">OrderService</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">ResultCircuitBreaker</span><span class="w"> </span><span class="n">_circuitBreaker</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">OrderService</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_circuitBreaker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ResultCircuitBreaker</span><span class="p">(</span>
+<span class="w">            </span><span class="n">maxFailures</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">            </span><span class="n">resetTimeout</span><span class="p">:</span><span class="w"> </span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ProcessOrderAsync</span><span class="p">(</span><span class="n">OrderRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">_circuitBreaker</span><span class="p">.</span><span class="n">ExecuteAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">_orderRepository</span><span class="p">.</span><span class="n">CreateOrderAsync</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom-error-handling">Custom Error Handling<a class="headerlink" href="#custom-error-handling" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ProcessOrderWithCustomHandling</span><span class="p">(</span><span class="n">OrderRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">_circuitBreaker</span><span class="p">.</span><span class="n">ExecuteAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">_orderRepository</span><span class="p">.</span><span class="n">CreateOrderAsync</span><span class="p">(</span><span class="n">request</span><span class="p">),</span>
+<span class="w">        </span><span class="n">error</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">Timeout</span><span class="p">,</span>
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ProcessOrderWithFallbackAsync</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="3-validation-pipeline">3. Validation Pipeline<a class="headerlink" href="#3-validation-pipeline" title="Permanent link">&para;</a></h2>
+<h3 id="complex-validation">Complex Validation<a class="headerlink" href="#complex-validation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ValidateUser</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">Email</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Email cannot be null&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">IsValidEmail</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">Email</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Invalid email format&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">Password</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Password cannot be null&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">IsStrongPassword</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">Password</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Weak password&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateUserAge</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateUserLocation</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="async-validation">Async Validation<a class="headerlink" href="#async-validation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ValidateUserAsync</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">EnsureAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">IsEmailUniqueAsync</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">Email</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Email already in use&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">EnsureAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">IsUsernameAvailableAsync</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">Username</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Username taken&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ValidateUserLocationAsync</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="4-retry-mechanism">4. Retry Mechanism<a class="headerlink" href="#4-retry-mechanism" title="Permanent link">&para;</a></h2>
+<h3 id="basic-retry">Basic Retry<a class="headerlink" href="#basic-retry" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetDataWithRetryAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GetDataAsync</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="n">WithRetry</span><span class="p">(</span>
+<span class="w">            </span><span class="n">maxAttempts</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">:</span><span class="w"> </span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="conditional-retry">Conditional Retry<a class="headerlink" href="#conditional-retry" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetDataWithConditionalRetryAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GetDataAsync</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="n">WithRetry</span><span class="p">(</span>
+<span class="w">            </span><span class="n">maxAttempts</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">:</span><span class="w"> </span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">),</span>
+<span class="w">            </span><span class="n">shouldRetry</span><span class="p">:</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">Timeout</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="5-timeout-management">5. Timeout Management<a class="headerlink" href="#5-timeout-management" title="Permanent link">&para;</a></h2>
+<h3 id="basic-timeout">Basic Timeout<a class="headerlink" href="#basic-timeout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetDataWithTimeoutAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GetDataAsync</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">5</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom-timeout-handling">Custom Timeout Handling<a class="headerlink" href="#custom-timeout-handling" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetDataWithCustomTimeoutAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GetDataAsync</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="n">WithTimeout</span><span class="p">(</span>
+<span class="w">            </span><span class="n">timeout</span><span class="p">:</span><span class="w"> </span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">5</span><span class="p">),</span>
+<span class="w">            </span><span class="n">onTimeout</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Failure</span><span class="p">(</span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">Timeout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Operation timed out&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="6-parallel-operations">6. Parallel Operations<a class="headerlink" href="#6-parallel-operations" title="Permanent link">&para;</a></h2>
+<h3 id="parallel-result-processing">Parallel Result Processing<a class="headerlink" href="#parallel-result-processing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">ProcessDataInParallelAsync</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ids</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ids</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ProcessDataAsync</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">tasks</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">results</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Aggregate</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;&gt;</span><span class="p">.</span><span class="n">Success</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="p">()),</span>
+<span class="w">            </span><span class="p">(</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">dataList</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">                </span><span class="n">result</span><span class="p">.</span><span class="n">Map</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">dataList</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">dataList</span><span class="p">;</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="parallel-validation">Parallel Validation<a class="headerlink" href="#parallel-validation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">ValidateUsersInParallelAsync</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">validationTasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ValidateUserAsync</span><span class="p">(</span><span class="n">user</span><span class="p">));</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">validationResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">validationTasks</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">validationResults</span><span class="p">.</span><span class="n">All</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">IsSuccess</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span><span class="p">.</span><span class="n">Success</span><span class="p">(</span><span class="n">users</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">validationResults</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">IsFailure</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">Error</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span><span class="p">.</span><span class="n">Failure</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">ValidationError</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;Some users failed validation&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">object</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Errors&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errors</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="7-event-sourcing">7. Event Sourcing<a class="headerlink" href="#7-event-sourcing" title="Permanent link">&para;</a></h2>
+<h3 id="event-processing">Event Processing<a class="headerlink" href="#event-processing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ProcessOrderEvents</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">OrderEvent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">events</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Order</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">order</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">events</span><span class="p">.</span><span class="n">Aggregate</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Success</span><span class="p">(</span><span class="n">order</span><span class="p">),</span>
+<span class="w">            </span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">@event</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">currentOrder</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">                </span><span class="n">ProcessEvent</span><span class="p">(</span><span class="n">currentOrder</span><span class="p">,</span><span class="w"> </span><span class="n">@event</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event-validation">Event Validation<a class="headerlink" href="#event-validation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">OrderEvent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ValidateAndProcessEvent</span><span class="p">(</span><span class="n">OrderEvent</span><span class="w"> </span><span class="n">@event</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">OrderEvent</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">StartWith</span><span class="p">(</span><span class="n">@event</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Event cannot be in the future&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Version</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Invalid version&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateEventData</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ApplyEvent</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="1-resultfactory-usage">1. ResultFactory Usage<a class="headerlink" href="#1-resultfactory-usage" title="Permanent link">&para;</a></h2>
+<h3 id="http-requests">HTTP Requests<a class="headerlink" href="#http-requests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetUserFromApiAsync</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">_httpClient</span><span class="p">.</span><span class="n">GetAsync</span><span class="p">(</span><span class="s">$&quot;api/users/{userId}&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultFactory</span><span class="p">.</span><span class="n">FromHttpResponse</span><span class="p">(</span>
+<span class="w">        </span><span class="n">response</span><span class="p">,</span>
+<span class="w">        </span><span class="n">content</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">JsonSerializer</span><span class="p">.</span><span class="n">Deserialize</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="database-operations">Database Operations<a class="headerlink" href="#database-operations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetUserFromDatabase</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultFactory</span><span class="p">.</span><span class="n">FromDatabaseOperation</span><span class="p">(</span>
+<span class="w">        </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_dbContext</span><span class="p">.</span><span class="n">Users</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">userId</span><span class="p">),</span>
+<span class="w">        </span><span class="s">&quot;GetUser&quot;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="file-operations">File Operations<a class="headerlink" href="#file-operations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ReadConfigFile</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">filePath</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultFactory</span><span class="p">.</span><span class="n">FromFileOperation</span><span class="p">(</span>
+<span class="w">        </span><span class="n">filePath</span><span class="p">,</span>
+<span class="w">        </span><span class="n">content</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">JsonSerializer</span><span class="p">.</span><span class="n">Deserialize</span><span class="o">&lt;</span><span class="n">Config</span><span class="o">&gt;</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="2-resultpipeline-usage">2. ResultPipeline Usage<a class="headerlink" href="#2-resultpipeline-usage" title="Permanent link">&para;</a></h2>
+<h3 id="order-processing">Order Processing<a class="headerlink" href="#order-processing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ProcessOrderAsync</span><span class="p">(</span><span class="n">OrderRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Start</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateOrderRequest</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">validRequest</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CheckInventoryAsync</span><span class="p">(</span><span class="n">validRequest</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">inventory</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CalculateTotalAsync</span><span class="p">(</span><span class="n">inventory</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ProcessPaymentAsync</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">payment</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CreateOrderAsync</span><span class="p">(</span><span class="n">payment</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">30</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">WithRetry</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="user-registration">User Registration<a class="headerlink" href="#user-registration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">RegisterUserAsync</span><span class="p">(</span><span class="n">UserRegistration</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">ResultPipeline</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Start</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">ValidateUserData</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">validData</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CheckEmailAvailabilityAsync</span><span class="p">(</span><span class="n">validData</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">HashPasswordAsync</span><span class="p">(</span><span class="n">available</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">hashed</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CreateUserAsync</span><span class="p">(</span><span class="n">hashed</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ThenAsync</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">SendWelcomeEmailAsync</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BuildAsync</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="complex-validation_1">Complex Validation<a class="headerlink" href="#complex-validation_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ValidateAndCreateUser</span><span class="p">(</span><span class="n">UserRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">validationResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ValidationResult</span><span class="p">.</span><span class="n">Create</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="n">AddErrorIf</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">Name</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Name is required&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">AddErrorIf</span><span class="p">(</span><span class="o">!</span><span class="n">IsValidEmail</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">Email</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Email&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Invalid email format&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">AddErrorIf</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">Age</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User must be at least 18 years old&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">validationResult</span><span class="p">.</span><span class="n">IsValid</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Failure</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Error</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">ValidationError</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;Validation failed&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">object</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Errors&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">validationResult</span><span class="p">.</span><span class="n">Errors</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Success</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">User</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="n">Email</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="n">Age</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="parallel-operations">Parallel Operations<a class="headerlink" href="#parallel-operations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="p">(</span><span class="n">User</span><span class="p">,</span><span class="w"> </span><span class="n">Order</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetUserAndOrderAsync</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">orderId</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">userTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetUserAsync</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">orderTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrderAsync</span><span class="p">(</span><span class="n">orderId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">userTask</span><span class="p">,</span><span class="w"> </span><span class="n">orderTask</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">userResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">userTask</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">orderResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">orderTask</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="p">(</span><span class="n">User</span><span class="p">,</span><span class="w"> </span><span class="n">Order</span><span class="p">)</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">userResult</span><span class="p">,</span><span class="w"> </span><span class="n">orderResult</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="detailed-error-information">Detailed Error Information<a class="headerlink" href="#detailed-error-information" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ProcessOrder</span><span class="p">(</span><span class="n">OrderRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">try</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateOrder</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Success</span><span class="p">(</span><span class="n">order</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Failure</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Error</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">InvalidOperation</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;Failed to process order&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">object</span><span class="o">&gt;</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Request&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Exception&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Timestamp&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="error-transformation">Error Transformation<a class="headerlink" href="#error-transformation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetUser</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultFactory</span><span class="p">.</span><span class="n">FromDatabaseOperation</span><span class="p">(</span>
+<span class="w">        </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_dbContext</span><span class="p">.</span><span class="n">Users</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">userId</span><span class="p">),</span>
+<span class="w">        </span><span class="s">&quot;GetUser&quot;</span>
+<span class="w">    </span><span class="p">).</span><span class="n">Catch</span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">DatabaseError</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Failure</span><span class="p">(</span>
+<span class="w">                </span><span class="n">Error</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">ErrorCode</span><span class="p">.</span><span class="n">NotFound</span><span class="p">,</span>
+<span class="w">                    </span><span class="s">&quot;User not found&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">object</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;UserId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Failure</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="6-getvalueor-methods">6. GetValueOr* Methods<a class="headerlink" href="#6-getvalueor-methods" title="Permanent link">&para;</a></h2>
+<h3 id="default-values">Default Values<a class="headerlink" href="#default-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">GetUserName</span><span class="p">(</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">userResult</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">userResult</span><span class="p">.</span><span class="n">GetValueOr</span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;Anonymous&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="alternative-operations-on-error">Alternative Operations on Error<a class="headerlink" href="#alternative-operations-on-error" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetUserDataAsync</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">userResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">GetUserAsync</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">userResult</span><span class="p">.</span><span class="n">GetValueOrAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="n">user</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">Data</span><span class="p">),</span>
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">GetDefaultUserDataAsync</span><span class="p">()</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="exception-throwing">Exception Throwing<a class="headerlink" href="#exception-throwing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">GetUserOrThrow</span><span class="p">(</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">userResult</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">userResult</span><span class="p">.</span><span class="n">GetValueOrThrow</span><span class="p">(</span>
+<span class="w">        </span><span class="n">error</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserNotFoundException</span><span class="p">(</span><span class="s">$&quot;User not found: {error.Message}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../real-world-scenarios/">Real World Scenarios</a></li>
+<li><a href="api-reference/result.md">API Reference</a></li>
+<li><a href="advanced-topics/performance.md">Advanced Topics</a> </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.suggest", "search.share", "toc.integrate", "content.tabs.link", "content.code.annotate", "content.code.copy", "content.tooltips", "content.action.edit"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
