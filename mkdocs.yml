@@ -1,7 +1,7 @@
 site_name: TinyResult
 site_description: A lightweight and powerful Result Pattern implementation for .NET
 site_author: Murat Dinç
-repo_url: https://github.com/MuratDincc/TinyResult
+repo_url: https://github.com/MuratDincc/tiny-result
 edit_uri: edit/master/docs/
 
 theme:
